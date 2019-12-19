@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		body {
+			background: fuchsia;
+		}
+
+		.box {
+			width: 500px;
+			height: 500px;
+			background: hotpink;
+		}
+
+		.small {
+			width: 300px;
+			height: 300px;
+			background: darkblue;
+		}
+	</style>
+
+	<body>
+		<div class="box">
+			<div class="small"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var event = event || window.event
+
+		var my_bady = document.querySelector("body")
+		var my_box = document.querySelector(".box")
+		var my_small = document.querySelector(".small")
+		//  my_bady.addEventListener("click" , function(){
+		// 	console.log("3333")
+		// } , true)
+		//  my_box.addEventListener("click" , function(){
+		// 	console.log("2222")
+		// } , true)
+		// my_small.addEventListener("click" , function(){
+		// 	console.log("1111")
+		// } , true)
+		console.log(window)
+
+		function my_scroll_fn(ele, cb_fn) {
+			var is_Chrome = window.navigator.userAgent.indexOf("Chrome")
+			if (is_Chrome == -1) {
+				console.log("火狐浏览器")
+				ele.addEventListener("DOMMouseScroll", ff, false)
+			} else {
+				console.log("谷歌浏览器")
+				ele.addEventListener("mousewheel", ff, false)
+			}
+
+			var down = false
+
+			function ff(event) {
+				event = event || window.event
+				// 阻止冒泡
+				if (event.stopPropagation) {
+					event.stopPropagation()
+				} else {
+					event.cancelBubble = true;
+				}
+				if (is_Chrome == -1) {
+					down = !(event.detail > 0)
+				} else {
+					down = event.wheelDelta > 0
+				}
+				cb_fn.call(ele, event, down)
+			}
+		}
+		my_scroll_fn(my_box, function(e, down) {
+			console.log(this, e, down)
+		})
+	</script>
+</html>

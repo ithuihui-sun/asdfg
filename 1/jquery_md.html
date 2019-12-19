@@ -1,0 +1,1165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>JQuery基础</title>
+
+</head>
+<body>
+<h1>JQuery基础</h1>
+
+<h6>jquery第一节课讲义 今天给咱们来学习jquery，</h6>
+
+<h6>之前已经给做过很多铺垫的jquery今天终于现身了， jquery是各位在今后工作中至关重要的一部分， 可以说各位在今后的工作中js部分绝大多数都是用jquery抒写的。</h6>
+
+<h6>那么jquery为什么这么厉害呢？ 接下来就让我们揭开jquery的面纱， 在学习的过程中各位就知道jquery的强大。</h6>
+
+<h6>那么今天学完这节课各位能掌握些什么呢？ jQuery环境的配置 $(document).ready与window.onload的区别 jQuery选择器 基本选择器、 层次选择器、 基本过滤选择器、 内容过滤选择器、 属性过滤选择器、 子元素过滤选择器、 表单属性选择器 jQuery的常见方法</h6>
+
+<h5>接下来给大家介绍jquery为什么他应用如此广泛？ 它有哪些优势呢？</h5>
+
+<ul>
+<li>轻量级(相对市场上其他的插件他的大小是轻量级的， 这里的轻量级是相对的)</li>
+<li>强大的选择器(举例： 源生js需要for循环能获取到的class名它一个单词就搞定)</li>
+<li>出色的DOM操作(语法简单省时省力) 可靠的事件处理机制(由于语法简单只要规范书写很少发生事件冲突)</li>
+<li>完善的Ajax(jq里面自带封包好的ajax可以直接用)</li>
+<li>出色的浏览器兼容性(语法兼容市面流行的各大浏览器)</li>
+<li>链式操作方式(用起来很方便， 省力)</li>
+<li>丰富的插件支持(很多插件都可以在jq的基础上使用)</li>
+<li>完善的文档(完善的文档方便使用者查询文档， 更好的使用jq)</li>
+<li>开源(代码开源让程序员更好更快更省力的完成编程任务)</li>
+</ul>
+
+
+<h2>注意</h2>
+
+<ul>
+<li><ol>
+<li>在jQuery库中， $ 就是jQuery的一个简写形式 例如： $(“#div”) == jQuery(“#div”)</li>
+</ol>
+</li>
+<li><ol>
+<li>当浏览器解析完document后， 执行ready小括号内的函数。</li>
+</ol>
+</li>
+<li><pre><code>那么ready与onload的简单区别是什么呢？ 
+
+1. 执行时间 window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
+    $(document).ready() 是DOM结构绘制完毕后就执行， 不必等到加载完毕。 
+2. 编写个数不同 window.onload不能同时编写多个， 如果有多个window.onload方法， 只会执行一个(document).ready() 可以同时编写多个， 并且都可以得到执行
+3. 简化写法 
+    window.onload没有简化写法 
+    $(document).ready(function() {}) 
+    可以简写成 $(function() {}); 
+    在今后的应用中都用$(function() {});
+</code></pre></li>
+</ul>
+
+
+<h2>如何获取到最新的jquery呢？</h2>
+
+<ul>
+<li>进入jQuery官网， 下载最新jQuery库文件。 http: //jquery.com/</li>
+<li>官网上有两个版本，</li>
+<li><pre><code>1. xx版本是兼容ie678的， 
+</code></pre></li>
+<li><pre><code>2. xx版本是不兼容ie678的版本
+</code></pre></li>
+<li>每个版本又有两个下载版本， 一个是压缩过的一个是未压缩的， 都可以使用。</li>
+<li>接下来在页面中引入jQuery 在head标签内引入jQuery， 格式如下：</li>
+<li><pre><code> &lt;script type = "text/javascript"src = “.. / script / jquery.js” &gt; &lt; /script&gt;
+</code></pre></li>
+<li><p>在DOM元素被加载完成的情况下执行的代码在jq里面怎么写呢？</p>
+
+<pre><code>$(document).ready(function() {          
+    alert(“Hello World!”);
+});
+</code></pre></li>
+</ul>
+
+
+<h2>css对象模型</h2>
+
+<h4>css修改</h4>
+
+<pre><code>$("#div1").css("background-color", "red");
+$("#div1").css({
+    "width": "200px",
+    "height": "200px",
+    "background-color": "red"
+});
+</code></pre>
+
+<h4>动画css</h4>
+
+<pre><code>$("#div1").animate({
+    "width": "200px",
+    "height": "200px"
+}, 2000);
+</code></pre>
+
+<h1>DOM 操作</h1>
+
+<h2>创建节点</h2>
+
+<h4>创建文本节点</h4>
+
+<ul>
+<li><p>运用传统的javascript方法， 创建一个文本节点：</p>
+
+<pre><code>var textNode = document.createTextNode(‘My Demo’);
+</code></pre></li>
+<li><p>jQuery中创建一个div节点：</p>
+
+<pre><code>  $(‘ &lt; div &gt; &lt; /div&gt;’);
+</code></pre></li>
+</ul>
+
+
+<h4>设置属性</h4>
+
+<ul>
+<li><p>运用传统的javascript方法， 设置 / 获取属性：</p>
+
+<pre><code>  // setAttribute(); //设置
+  var a = document.createElement(“p”);            a.setAttribute(“title”, ”my demo”); 
+  // 不管以前有没有title属性， 以后的值是 my demo。       // getAttribute(); //获取
+  var a = document.getElementById(“CSSrain”);
+  var b = a.getAttribute(“title”); 
+  //获取的时候， 如果属性不存在， 则返回空，
+</code></pre></li>
+<li><p>jQuery中设置 / 获取属性</p>
+
+<pre><code>  $(“#test1″).attr({“ class”: “test”, “title”: “TestDemo!” }); 
+  $(“#test1″).attr(“class”);
+</code></pre></li>
+</ul>
+
+
+<h4>插入节点</h4>
+
+<ul>
+<li>运用传统的javascript方法， 插入一个节点</li>
+<li><p>如使用appendChild()）：</p>
+
+<pre><code>var container = document.createElement(“p”);
+document.body.appendChild(container);       
+</code></pre></li>
+<li><p>jQuery中插入节点：</p>
+
+<pre><code>  $(‘body ').append(' &lt; div &gt; 在body的末尾加入一个新的div &lt; /div&gt;');
+</code></pre></li>
+<li><p>append after appendTo insertAfter prepend before prependTo insertBefore</p></li>
+</ul>
+
+
+<h4>添加兄弟标签</h4>
+
+<pre><code>$("ul").after("&lt;div&gt;我是div&lt;/div&gt;");
+$("ul").before("&lt;div&gt;我是div&lt;/div&gt;");
+$("ul").after("&lt;div&gt;我是div&lt;/div&gt;");
+$("&lt;div&gt;我是div&lt;/div&gt;").insertAfter("ul");
+$("&lt;div&gt;我是div&lt;/div&gt;").insertBefore("ul");
+</code></pre>
+
+<h4>删除节点</h4>
+
+<ul>
+<li><p>运用传统的javascript方法， 删除一个节点：</p>
+
+<pre><code>  var b = document.getElementById(“test”);
+  var c = b.parentNode; 
+  c.removeChild(b); 
+</code></pre></li>
+<li><p>jQuery中删除节点：</p>
+
+<pre><code>  $(‘#test′).remove(); 
+</code></pre></li>
+<li><p>remove empty</p></li>
+</ul>
+
+
+<h4>替换节点</h4>
+
+<ul>
+<li><p>运用传统的javascript方法， 替换节点：</p>
+
+<pre><code>  Element.repalceChild(newNode, oldNode);         // oldNode必须是Element的一个子节点。 
+</code></pre></li>
+<li><p>jQuery中替换节点：</p>
+
+<pre><code>      $(“ &lt; p &gt; 替换 test1！ &lt; /p&gt;”).replaceAll(“#test1″);
+</code></pre></li>
+</ul>
+
+
+<h4>复制节点</h4>
+
+<ul>
+<li><p>运用传统的javascript方法， 复制一个节点：</p>
+
+<pre><code>  var mes = document.createTextNode("hello world");
+  var container = document.createElement("p"); container.appendChild(mes);
+  document.body.appendChild(container);
+  var newpara = container.cloneNode(true);
+  // true和false的区别
+  document.body.appendChild(newpara);
+  Element.repalceChild(newNode, oldNode);
+  // oldNode必须是Element的一个子节点。
+</code></pre></li>
+<li><p>jQuery中复制一个节点：</p>
+
+<pre><code>  var a = $('&lt;p&gt;hello world&lt;/p&gt;'); 
+  $('body').append(a);
+  var clone_a = a.clone(); 
+  $('body').append(clone_a);
+</code></pre></li>
+</ul>
+
+
+<h4>遍历节点</h4>
+
+<h6>获取子元素</h6>
+
+<pre><code>    $("div").children("a").length
+</code></pre>
+
+<h6>获取兄弟标签</h6>
+
+<pre><code>    $("a").siblings().length;
+    $("a").siblings().eq(1).html()
+    $("a").next().html();
+    $("a").prev().html();
+</code></pre>
+
+<h6>获取匹配到的第一个</h6>
+
+<pre><code>$("li").first()
+</code></pre>
+
+<h6>获取父亲标签</h6>
+
+<pre><code>    $("span").parent("div").length
+    // .parent() 获得当前匹配元素集合中每个元素的父元素
+</code></pre>
+
+<h6>find 方法</h6>
+
+<pre><code>    $("div").find("a").css("color", "red")
+</code></pre>
+
+<h6>after</h6>
+
+<pre><code>$("ul").after("&lt;div&gt;我是div&lt;/div&gt;");
+$("ul").before("&lt;div&gt;我是div&lt;/div&gt;");
+</code></pre>
+
+<h6>children</h6>
+
+<pre><code>$("div").children("a").length);
+</code></pre>
+
+<h6>遍历 each</h6>
+
+<pre><code>$.each($("li"), function(index, val) {
+    //alert(index);
+    //val.html(index);
+    $(val).html(index);
+});
+</code></pre>
+
+<h6>size:</h6>
+
+<ul>
+<li><p>输出被 jQuery 选择器匹配的元素的数量：</p>
+
+<pre><code>  $("li").size()
+</code></pre></li>
+</ul>
+
+
+<h6>index</h6>
+
+<ul>
+<li><p>函数用于获取当前jQuery对象中指定DOM元素的索引值。</p>
+
+<pre><code>  $("ul li").index(this)
+  // obj.get(0) === obj[0]
+</code></pre></li>
+</ul>
+
+
+<h6>is() 方法</h6>
+
+<pre><code>$(".xxx").is("li")
+</code></pre>
+
+<h6>insertAfter</h6>
+
+<pre><code>$("ul").after("&lt;div&gt;我是div&lt;/div&gt;");
+// $("&lt;div&gt;我是div&lt;/div&gt;").insertAfter("ul");
+$("&lt;div&gt;我是div&lt;/div&gt;").insertBefore("ul");
+</code></pre>
+
+<h6>next</h6>
+
+<pre><code>$("a").next().html());
+</code></pre>
+
+<h6>属性的设置</h6>
+
+<pre><code>$("#div1").attr("index","2");
+$("#div1").attr("ind"));
+$("#div1").attr({
+    "index": "2",
+    "ind": "3"
+});
+// 也可以通过方法来修改某个属性
+
+$("img").attr("title", function() {
+    return this.src;
+});
+// 删除属性
+// $("img").removeAttr("title");
+</code></pre>
+
+<h6>插到前边</h6>
+
+<pre><code>$("ul").append("&lt;li&gt;2&lt;/li&gt;");
+$("ul").prepend("&lt;li&gt;"+index+"&lt;/li&gt;");
+$("&lt;li&gt;" + index + "&lt;/li&gt;").prependTo("ul");
+</code></pre>
+
+<h6>获取高度</h6>
+
+<pre><code>$("#div1").height()
+$("div").height(function (n,c){
+    if (n==1){
+        return c+100;
+    }
+});
+//获取包含margin，padding,border，width的宽度 
+$("#div1").outerWidth(true)
+
+
+// 逐渐增加div的大小
+$("div").click(function() {
+
+    $(this).css({
+
+        width: function(index, value) {
+
+            console.log(index);
+
+            return parseFloat(value) * 1.3;
+
+        },
+
+        height: function(index, value) {
+
+            return parseFloat(value) * 1.3;
+
+        }
+
+    });
+
+});
+</code></pre>
+
+<h6>删除标签 remove</h6>
+
+<pre><code>$("p").remove();
+$("p").empty();
+</code></pre>
+
+<h6>removeClass</h6>
+
+<pre><code>$("div").removeClass('active');
+</code></pre>
+
+<h6>替换标签 replaceAll</h6>
+
+<pre><code>$("&lt;a href='###'&gt;我是a&lt;/a&gt;").replaceAll('p');
+</code></pre>
+
+<h6>siblings</h6>
+
+<pre><code>$("a").siblings().eq(1).html()
+</code></pre>
+
+<h6>滚动属性 scroll</h6>
+
+<ul>
+<li>孩子宽度太宽, 超出去父视图部分了</li>
+<li><p>父亲要说 overflow: scroll</p>
+
+<pre><code>$("#wrap").scrollLeft(200);
+// 获取偏移量
+$("#wrap").scrollLeft()
+</code></pre></li>
+</ul>
+
+
+<h6>offset 偏移量</h6>
+
+<pre><code>$("#child").offset().left
+$("#child").position().left
+</code></pre>
+
+<h6>input 值</h6>
+
+<pre><code>$("input").val();
+$("input").val("dfsd");
+</code></pre>
+
+<h4>属性操作</h4>
+
+<ul>
+<li>这节课中js写法由于讲过一带而过复习一下。 jq也是带着过一遍， 虽然多但是实际上今后工作用的并不多， 用的多的在jq2文件夹里面有相应的例子代码</li>
+<li>注： 在讲选择器的时候可以参考选择器全.html这个文件，</li>
+<li>点击不同的btn会让选中的标签显示不同颜色</li>
+</ul>
+
+
+<h6>添加属性</h6>
+
+<pre><code>$("div").addClass('active');
+$("div").removeClass('active');
+$("div").toggleClass('active');
+$("#div1").attr("index", "2");
+$("#div1").attr("ind")
+
+$("#div1").attr({
+    "index": "2",
+    "ind": "3"
+});
+</code></pre>
+
+<h1>jQuery 工具 tools</h1>
+
+<h6>数组和字典的遍历</h6>
+
+<pre><code>    var arr = {
+
+        name: "啊哈给你先",
+
+        age: 13
+
+    };
+
+    $.each(arr, function(i, n) {
+
+        console.log(i + "----" + n);
+
+    });
+</code></pre>
+
+<h6>扩张某一个数组</h6>
+
+<pre><code>    var a = {
+
+        name: "zhangsan",
+
+        age: 12,
+
+        hobby: "nvren"
+
+    };
+
+    var b = {
+
+        name: "lisi",
+
+        number: 15
+
+    };
+
+    $.extend(a, b);
+
+    console.log(a);
+</code></pre>
+
+<h6>合并两个数组</h6>
+
+<pre><code>    var a = {
+
+        name: "zhangsan",
+
+        age: 12,
+
+        hobby: "nvren"
+
+    };
+
+    var b = {
+
+        name: "lisi",
+
+        number: 15
+
+    };
+
+    var a = [5, 6, 2];
+
+    var b = [3, 6, 7];
+
+    $.merge(a, b);
+
+    console.log(a);
+</code></pre>
+
+<h6>过滤函数</h6>
+
+<pre><code>    var a = [5, 2, 9];
+
+    var b = $.grep(a, function(i, n) {
+
+        console.log(i + "----" + n);
+
+        return i &lt; 6;
+
+    }, true);
+
+    console.log(b);
+</code></pre>
+
+<h6>将一个数组中的元素映射到另一个数组中</h6>
+
+<pre><code>    var a = [4, 8, 2];
+
+    var b = $.map(a, function(n) {
+
+        // 数组中的每个元素+4
+
+        // return n + 4;
+
+
+
+        // 数组中大于2的元素+1 ， 否则删除
+
+        // return n &gt; 2 ? n + 1 : null;
+
+
+
+        // 对数组进行扩展
+
+        return [n, n + 2];
+
+    });
+
+    console.log(b);
+</code></pre>
+
+<h6>查看数组上某个元素的位置</h6>
+
+<pre><code>    var a = [4 , 8 , "zhangsan" , 'lisi'];
+
+    var b = $.inArray("lisi" , a);
+
+    console.log(b);
+</code></pre>
+
+<h6>元素集合---> 数组</h6>
+
+<pre><code>    console.log($("li"));
+
+    var a = $("li").toArray();
+
+    console.log(a);
+</code></pre>
+
+<h6>对象 - > String</h6>
+
+<pre><code>    var a = {
+
+        name: "zhangsan",
+
+        ag: 12
+
+    };
+
+    var b = $.param(a);
+
+    console.log(b);
+
+    var myObj = {
+
+        a: {
+
+            name: "zhangsan",
+
+            age: 12
+
+        },
+
+        b: [1, 2, 3]
+
+    };
+
+
+
+    var encodeStr = $.param(myObj);
+
+    console.log(encodeStr);
+
+    var decodeStr = decodeURIComponent(encodeStr);
+
+    console.log(decodeStr);
+
+
+
+    var encodeStr = $.param(myObj, true);
+
+    console.log(encodeStr);
+
+    var decodeStr = decodeURIComponent(encodeStr);
+
+    console.log(decodeStr);
+</code></pre>
+
+<h6>查看当前jQuery版本</h6>
+
+<pre><code>    console.log($.fn.jquery);
+</code></pre>
+
+<h1>jQuery 事件</h1>
+
+<blockquote><p><a href="http://www.w3school.com.cn/jquery/jquery_ref_events.asp">事件参考手册</a></p></blockquote>
+
+<h2>trigger() 方法</h2>
+
+<h3>触发 input 元素的 select 事件：</h3>
+
+<h4>案例:</h4>
+
+<pre><code>$("button").click(function() {
+    $("input").trigger("select");
+});
+</code></pre>
+
+<h4>语法</h4>
+
+<pre><code>$(selector).trigger(event, [param1, param2, ...])
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>   参数      </th>
+<th>   描述      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event</td>
+<td>必需。 规定指定元素要触发的事件。可以使自定义事件（ 使用 bind() 函数来附加）， 或者任何标准事件。</td>
+</tr>
+<tr>
+<td>[param1, param2, ...]</td>
+<td>可选。 传递到事件处理程序的额外参数。额外的参数对自定义事件特别有用。</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>bind() 方法</h2>
+
+<pre><code>$("button").bind({
+    click:function(){$("p").slideToggle();},
+    mouseover:function(){$("body").css("background-color","red");},  
+    mouseout:function(){$("body").css("background-color","#FFFFFF");}  
+});
+</code></pre>
+
+<h2>one() 方法</h2>
+
+<h3>为被选元素附加一个或多个事件处理程序， 并规定当事件发生时运行的函数。</h3>
+
+<pre><code>$("p").one("click", function() {
+    $(this).animate({ fontSize: "+=6px" });
+});
+</code></pre>
+
+<h2>change() 方法</h2>
+
+<h3>注意： 当用于 select 元素时， change 事件会在选择某个选项时发生。 当用于 text field 或 text area 时， 该事件会在元素失去焦点时发生。</h3>
+
+<pre><code>$(".field").change(function() {
+    $(this).css("background-color", "#FFFFCC");
+});
+$("button").click(function() {
+    $("input").change();
+});
+</code></pre>
+
+<h2>keypress() 方法</h2>
+
+<pre><code>$("input").keypress(function() {
+    $("span").text(i += 1);
+});
+$("button").click(function() {
+    $("input").keypress();
+});
+</code></pre>
+
+<h2>select() 方法</h2>
+
+<pre><code>$("input").select(function() {
+    $("input").after(" Text marked!");
+});
+</code></pre>
+
+<h2>toggleClass() 方法</h2>
+
+<pre><code>$("button").click(function() {
+    $("p").toggleClass("main");
+});
+</code></pre>
+
+<h2>hide()</h2>
+
+<h3>隐藏事件</h3>
+
+<pre><code>$("p").click(function() {
+    $(this).hide();
+});
+// 也可以带动画延迟效果
+// $(this).hide("slow");
+// 也可以是时间 1000
+// 还可以带回调函数
+// hide(1000, callBack);
+</code></pre>
+
+<h2>显示事件 show</h2>
+
+<h6>用法同hide同理</h6>
+
+<ul>
+<li>可以使用 toggle() 方法来切换 hide() 和 show() 方法</li>
+</ul>
+
+
+<h2>淡入淡出 fade</h2>
+
+<h6>用法同hide同理</h6>
+
+<ul>
+<li>淡入 fadeIn()</li>
+<li>淡出 fadeOut()</li>
+<li>淡入淡出 fadeToggle()</li>
+</ul>
+
+
+<h2>滑动 slide</h2>
+
+<h6>用法同hide同理</h6>
+
+<ul>
+<li>向下滑动 slideDown()</li>
+<li>向上滑动 slideUp()</li>
+<li>交换滑动 slideToggle()</li>
+</ul>
+
+
+<h2>动画 animate</h2>
+
+<p>$(selector).animate({ params }, speed, callback);</p>
+
+<pre><code>$("button").click(function() {
+    $("div").animate({
+        left: '250px',
+        opacity: '0.5',
+        height: '150px',
+        width: '150px'
+    });
+});
+// 也可以这样写
+$("button").click(function() {
+    $("div").animate({
+        left: '250px',
+        height: '+=150px',
+        width: '+=150px'
+    });
+});
+// 您甚至可以把属性的动画值设置为 "show"、"hide"或 "toggle"：
+$("button").click(function() {
+    $("div").animate({
+        height: 'toggle'
+    });
+});
+</code></pre>
+
+<p>提示： 可以用 animate() 方法来操作所有 CSS 属性吗？</p>
+
+<p>是的， 几乎可以！ 不过， 需要记住一件重要的事情： 当使用 animate() 时， 必须使用 Camel 标记法书写所有的属性名， 比如， 必须使用 paddingLeft 而不是 padding - left， 使用 marginRight 而不是 margin - right， 等等。</p>
+
+<p>同时， 色彩动画并不包含在核心 jQuery 库中。</p>
+
+<h3>jQuery animate() - 使用队列功能</h3>
+
+<p>默认地， jQuery 提供针对动画的队列功能。</p>
+
+<ul>
+<li>这意味着如果您在彼此之后编写多个 animate() 调用， jQuery 会创建包含这些方法调用的“ 内部” 队列。 然后逐一运行这些 animate 调用。</li>
+</ul>
+
+
+<p><strong>实例 1</strong></p>
+
+<p>隐藏， 如果您希望在彼此之后执行不同的动画， 那么我们要利用队列功能：</p>
+
+<pre><code>$("button").click(function() {
+    var div = $("div");
+    div.animate({ height: '300px', opacity: '0.4' }, "slow");
+    div.animate({ width: '300px', opacity: '0.8' }, "slow");
+    div.animate({ height: '100px', opacity: '0.4' }, "slow");
+    div.animate({ width: '100px', opacity: '0.8' }, "slow");
+});
+</code></pre>
+
+<p><strong>实例 2</strong></p>
+
+<p>下面的例子把 &lt; div > 元素移动到右边， 然后增加文本的字号：</p>
+
+<pre><code>$("button").click(function() {
+    var div = $("div");
+    div.animate({ left: '100px' }, "slow");
+    div.animate({ fontSize: '3em' }, "slow");
+});
+</code></pre>
+
+<h3>stop() 方法</h3>
+
+<p>$(selector).stop(stopAll, goToEnd);</p>
+
+<ul>
+<li><p>可选的 stopAll 参数规定是否应该清除动画队列。 默认是 false， 即仅停止活动的动画， 允许任何排入队列的动画向后执行。</p></li>
+<li><p>可选的 goToEnd 参数规定是否立即完成当前动画。 默认是 false。</p></li>
+<li><p>因此， 默认地， stop() 会清除在被选元素上指定的当前动画。</p>
+
+<pre><code>  $(document).ready(function() {
+      $("#start").click(function() {
+          $("div").animate({ left: '100px' }, 5000);
+          $("div").animate({ fontSize: '3em' }, 5000);
+      });
+
+      $("#stop").click(function() {
+          $("div").stop();
+      });
+
+      $("#stop2").click(function() {
+          $("div").stop(true);
+      });
+
+      $("#stop3").click(function() {
+          $("div").stop(true, true);
+      });
+
+  });
+</code></pre></li>
+</ul>
+
+
+<h3>链式写法 (方法链接)</h3>
+
+<p>下面的例子把 css(), slideUp(), and slideDown() 链接在一起。 "p1"</p>
+
+<p>元素首先会变为红色， 然后向上滑动， 然后向下滑动：</p>
+
+<pre><code>$("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+</code></pre>
+
+<h1>jQuery cssHooks</h1>
+
+<pre><code>if (!$.cssHooks) {
+
+    throw ("jQuery 1.4.3+ is needed for this plugin to work");
+
+    return;
+
+}
+
+// 判断 某一个 样式属性 是否被支持
+function styleSupport(prop) {
+
+    var vendorProp, supportedProp,
+
+        capProp = prop.charAt(0).toUpperCase() + prop.slice(1),
+
+        prefixes = ["Moz", "Webkit", "O", "ms"],
+
+        div = document.createElement("div");
+
+    if (prop in div.style) {
+
+        supportedProp = prop;
+
+    } else {
+
+        for (var i = 0; i &lt; prefixes.length; i++) {
+
+            vendorProp = prefixes[i] + capProp;
+
+            if (vendorProp in div.style) {
+
+                supportedProp = vendorProp;
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    div = null;
+
+    $.support[prop] = supportedProp
+
+    return supportedProp;
+
+}
+
+// 测试 borderRadius 是否被支持
+
+var borderRadius = styleSupport("borderRadius");
+
+// Set cssHooks only for browsers that
+
+// support a vendor-prefixed border radius
+
+if (borderRadius &amp;&amp; borderRadius !== "borderRadius") {
+
+    $.cssHooks.borderRadius = {
+
+        get: function(elem, computed, extra) {
+
+            return $.css(elem, borderRadius);
+
+        },
+
+        set: function(elem, value) {
+
+            elem.style[borderRadius] = value;
+
+        }
+
+    };
+
+}
+
+
+
+
+
+$("div").css("borderRadius", "20px");
+
+$("div").css("border-radius", "10px");
+</code></pre>
+
+<h2>简单提问</h2>
+
+<ul>
+<li>$(document).ready() 与onload的区别</li>
+<li>JQ与原生javascript相比， 有何优势</li>
+<li>说出jQuery包含的选择器种类， 并举例</li>
+<li>能够说出jq中对于dom节点有哪些操作方法
+  (例： 插入： append(); 加class名: addClass(“”); 删除class名: removeClass(“”); 等)</li>
+<li>能够将javascript和jq的命令相比较</li>
+<li>能够熟练运用jq的语法</li>
+<li>jq对于dom节点有哪些操作方法呢？</li>
+<li>JQuery 的核心函数  jQuery() 接受一个字符串， 其中包含了用于匹配元素集合的 CSS 选择器。</li>
+<li>console.log(jQuery.support.boxModel); 是什么意思</li>
+<li>jQuery.noConflict(); 运行这个函数将变量 $ 的控制权让渡给第一个实现它的那个库。</li>
+<li><strong> jQuery() 函数有三种语法：</strong></li>
+<li><pre><code>语法 1: 接受一个字符串， 其中包含了用于匹配元素集合的 CSS 选择器：
+</code></pre></li>
+<li><pre><code>    jQuery(selector, [context])
+</code></pre></li>
+<li><pre><code>    默认情况下， 选择器从文档根部对 DOM 进行搜索。 不过， 可以为 $() 设置可选的 context 参数。
+    举例: btn按钮里面的span标签
+</code></pre></li>
+<li><pre><code>语法 2: 使用原始 HTML 的字符串来创建 DOM 元素：
+
+    jQuery(html, [ownerDocument])
+    直接写html元素
+    还可以配置属性
+    $("&lt;input&gt;", {
+        type: "text",
+        val: "Test",
+        focusin: function() {
+            $(this).addClass("active");
+        },
+        focusout: function() {
+            $(this).removeClass("active");
+        }
+    }).appendTo("form");
+</code></pre></li>
+<li><pre><code>语法 3: 绑定一个在 DOM 文档载入完成后执行的函数：
+
+
+    jQuery(callback)
+
+
+    onConflict 冲突事件
+    var jq = $.noConflict();
+    jq(document).ready(function() {
+        jq("button").click(function() {
+            jq("p").text("jQuery 仍在运行！");
+        });
+    });
+</code></pre></li>
+</ul>
+
+</body>
+</html>

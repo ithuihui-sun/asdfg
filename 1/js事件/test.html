@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background-color: #00008B;
+				transform-style: preserve-3d;
+				perspective: 800px;
+			}
+
+			.da {
+				width: 400px;
+				height: 400px;
+				border: 1px solid black;
+				margin: 0 auto;
+				background-color: lightgreen;
+				overflow: hidden;
+
+
+				transform-style: preserve-3d;
+				perspective: 800px;
+			}
+
+			.kuai,
+			.xin_div {
+				width: 100px;
+				height: 100px;
+				background-color: white;
+				border-radius: 10px;
+				float: left;
+				border: 1px solid black;
+				box-sizing: border-box;
+			}
+
+			.xin_div {
+				text-align: center;
+				line-height: 100px;
+			}
+
+
+			@keyframes shang_kai {
+				0% {
+					transform-origin: 50% 0%;
+					transform: rotateX(-90deg);
+				}
+
+				100% {
+					transform-origin: 50% 0%;
+					transform: rotateX(0deg);
+				}
+			}
+
+			@keyframes xia_kai {
+				0% {
+					transform-origin: 50% 100%;
+					transform: rotateX(0deg);
+				}
+
+				100% {
+					transform-origin: 50% 100%;
+					transform: rotateX(90deg);
+				}
+			}
+
+			@keyframes zuo_kai {
+				0% {
+					transform-origin: 0% 50%;
+					transform: rotateY(0deg);
+				}
+
+				100% {
+					transform-origin: 0% 50%;
+					transform: rotateY(90deg);
+				}
+			}
+
+			@keyframes you_kai {
+				0% {
+					transform-origin: 100% 50%;
+					transform: rotateY(-90deg);
+				}
+
+				100% {
+					transform-origin: 100% 50%;
+					transform: rotateY(0deg);
+				}
+			}
+
+
+
+			.ani_shang_kai {
+				background-color: lightcoral;
+				animation: shang_kai 0.8s forwards;
+			}
+
+			.ani_xia_kai {
+				background-color: lightcoral;
+				animation: xia_kai 0.8s forwards
+			}
+
+			.ani_zuo_kai {
+				background-color: lightcoral;
+				animation: zuo_kai 0.8s forwards;
+			}
+
+			.ani_you_kai {
+				background-color: lightcoral;
+				animation: you_kai 0.8s forwards
+			}
+
+
+
+
+			@keyframes shang_guan {
+				0% {
+					background-color: lightcoral;
+					transform-origin: 50% 0%;
+					transform: rotateX(0deg);
+				}
+
+				80% {
+					background-color: white;
+				}
+
+				100% {
+					transform-origin: 50% 0%;
+					transform: rotateX(-90deg);
+				}
+			}
+
+			@keyframes xia_guan {
+				0% {
+					background-color: lightcoral;
+					transform-origin: 50% 100%;
+					transform: rotateX(90deg);
+				}
+
+				80% {
+					background-color: white;
+				}
+
+				100% {
+					transform-origin: 50% 100%;
+					transform: rotateX(0deg);
+				}
+			}
+
+			@keyframes zuo_guan {
+				0% {
+					background-color: lightcoral;
+					transform-origin: 0% 50%;
+					transform: rotateY(90deg);
+				}
+
+				80% {
+					background-color: white;
+				}
+
+				100% {
+
+					transform-origin: 0% 50%;
+					transform: rotateY(0deg);
+
+				}
+			}
+
+			@keyframes you_guan {
+				0% {
+					background-color: lightcoral;
+					transform-origin: 100% 50%;
+					transform: rotateY(0deg);
+				}
+
+				80% {
+					background-color: white;
+				}
+
+				100% {
+					transform-origin: 100% 50%;
+					transform: rotateY(-90deg);
+				}
+			}
+
+
+
+			.ani_shang_guan {
+				background-color: white;
+				animation: shang_guan 0.8s backwards;
+
+			}
+
+			.ani_xia_guan {
+				background-color: white;
+				animation: xia_guan 0.8s backwards;
+			}
+
+			.ani_zuo_guan {
+				background-color: white;
+				animation: zuo_guan 0.8s backwards;
+			}
+
+			.ani_you_guan {
+				background-color: white;
+				animation: you_guan 0.8s backwards;
+			}
+		</style>
+
+	</head>
+	<body>
+
+		<!-- <div class="test0"></div>
+		<div class="test"></div>
+		
+		<div class="test2"></div>
+		
+		 -->
+		<div class="da">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var p1_x, p1_y;
+		var da_div = document.querySelector(".da")
+		for (var i = 0; i < 16; i++) {
+			var tmp_div = document.createElement("div")
+			tmp_div.className = "kuai"
+			var new_div = document.createElement("div")
+			new_div.className = "xin_div"
+			tmp_div.appendChild(new_div)
+			da_div.appendChild(tmp_div)
+
+			tmp_div.addEventListener("mouseenter", function() {
+
+
+
+				// 1. 拿到移动的点 p1_x , p1_y
+				// 2. 拿到白块的四个边
+				// 3. 计算出 点到四个边的距离
+				// 4. 将计算出的距离 放到一个 数组 中
+				// 5. 遍历出 最小的 那个 距离
+				// 6. 根据 最小值, 判断 是哪个 边
+
+				var l = this.getBoundingClientRect().left
+				var t = this.getBoundingClientRect().top
+
+				var shang = t
+				var xia = t + this.offsetHeight
+				var zuo = l
+				var you = l + this.offsetWidth
+
+				var juli_z = p1_x - zuo
+				var juli_y = you - p1_x
+				var juli_s = p1_y - shang
+				var juli_x = xia - p1_y
+				var a = [juli_s, juli_x, juli_z, juli_y]
+				var xiao = a[0]
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] < xiao) {
+						xiao = a[i]
+					}
+				}
+
+				this.firstChild.innerText = "你好阿"
+				// this.firstChild.style.display = "block"
+				switch (xiao) {
+					case juli_s:
+						this.firstChild.direction = "shang"
+						this.firstChild.className = "xin_div ani_shang_kai"
+						break;
+					case juli_x:
+						this.firstChild.direction = "xia"
+						this.firstChild.className = "xin_div ani_xia_kai"
+						break;
+					case juli_z:
+						this.firstChild.direction = "zuo"
+						this.firstChild.className = "xin_div ani_zuo_kai"
+						break;
+					case juli_y:
+						this.firstChild.direction = "you"
+						this.firstChild.className = "xin_div ani_you_kai"
+						break;
+					default:
+						break;
+				}
+			})
+
+
+
+			tmp_div.addEventListener("mouseleave", function() {
+				this.firstChild.innerText = ""
+				switch (this.firstChild.direction) {
+					case "shang":
+						this.firstChild.className = "xin_div ani_shang_guan"
+						break;
+					case "xia":
+						this.firstChild.className = "xin_div ani_xia_guan"
+						break;
+					case "zuo":
+						this.firstChild.className = "xin_div ani_zuo_guan"
+						break;
+					case "you":
+						this.firstChild.className = "xin_div ani_you_guan"
+						break;
+					default:
+						break;
+				}
+			})
+		}
+
+
+
+
+		window.addEventListener("mousemove", function(event) {
+			var event = event || window.event
+			p1_x = event.clientX
+			p1_y = event.clientY
+		})
+
+
+
+		// document.onclick = function(event) {
+		// 	// layerX
+		// 	p1_x = event.layerX
+		// 	p1_y = event.layerY
+		// 	console.log(p1_x, p1_y)
+		// }
+	</script>
+</html>

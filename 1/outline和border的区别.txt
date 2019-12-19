@@ -1,0 +1,47 @@
+outline使用方法,outline与border的区别 
+
+在浏览器里，当鼠标点击或使用Tab键让一个链接或者一个radio获得焦点的时候，该元素将会被一个轮廓虚线框围绕。这个轮廓虚线框就是 outline 。
+
+outline 能告诉用户那一个可以激发事件的html元素获取了焦点，对钟爱键盘操作的用户尤其有意义。一个清晰悦目的outline设计能提高使用表单的用户体验。 另一方面，outline 也有些讨厌的地方，比如使用CSS设计的Tab(标签页)时，选择一个Tab之后，Tab上的轮廓虚线会一直显示，有些影响美观。
+
+CSS 的 outline 属性允许我们改变这个默认的轮廓虚线框效果。其配套的相关属性包括：
+
+outline
+
+outline-width
+
+outline-style
+
+outline-color
+
+outline-offset
+
+其中第一个 outline 是速写(shorthand)形式，格式为： outline: outline-color || outline-style || outline-width
+
+如果想让链接获取到焦点时更醒目，可以设置轮廓线条为红色，outline 属性的设计可能如下：
+
+a { outline-color: red; }
+
+而如果想去掉影响美观的Tab上的轮廓线条，outline属性可如下设置：
+
+.active-tab { outline: none; ...... /* other properties */}
+
+outline in browsers
+
+直到最新的IE7 beta2，MS的IE还不支持 outline CSS属性，不过IE为HTML元素扩展了一个 hideFoucs 属性，所有能获得焦点的元素如果添加 hideFoucs="true" 属性，那么它们获得焦点时虚线框将被不出现。比如MSDN里的例子:
+
+<button>button with rectangle</button>
+
+<!-- 其实hideFocus="false"同hideFocus="true"一样的效果，IE只要发现存在hideFocus属性即生效，这样写是为了兼 容XHTML的属性必须有值的规范 -->
+
+<button hideFocus="true">tton without rectangle</button>
+
+Firefox1.5提供了全面的outline支持。早期的Firefox 1.0.x 版本据说可以使用Mozilla的独有扩展 -moz-outline，不过我想现在几乎找不到什么不升级到Firefox 1.5的理由了。 另外Opera9 beta似乎还不支持。
+
+更多浏览器支持信息可以从QuirksMode 找到。
+
+outline 与 border 的区别
+
+border 可应用于几乎所有有形的html元素，而 outline 是针对链接、表单控件和ImageMap等元素设计。从而另一个区别也可以推理出，那就是： outline 的效果将随元素的 focus 而自动出现，相应的由 blur 而自动消失。这些都是浏览器的默认行为，无需JavaScript配合CSS来控制。
+
+另外从 CSS的十八般技巧 一文中还读到的一个区别就是： outline 不会象border那样影响元素的尺寸或者位置。

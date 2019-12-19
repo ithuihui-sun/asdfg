@@ -1,0 +1,81 @@
+api  接口
+wx.config({ 
+    debug: true,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+    ]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+  });
+
+raw 生的
+config 配置
+ready 准备
+startRecord 开始录音
+valid 有效的
+invalid 无效的
+domain 域
+
+
+
+
+css;
+element ； 元素。
+canvas ； 标签
+context; 上下文环境 画布；
+begin; 开始
+path；路径
+line；线条
+stroke；描边
+fill；填充
+close；关闭
+font；字体
+react；矩形
+arc；圆形
+image;图片
+draw;绘制
+move;移动
+point;点
+pixel；像素
+blur；模糊
+offset；偏移量
+shadow；阴影
+opacity alpha ； 透明度 透明
+
+
+destination 目标 目的地
+source； 源头。资源
+save 保存
+storage ； 存储。 仓库
+restore； 回到开始状态。
+splite  splice clip ； 剪切
+
+
+
+can  i  use  ；查询css样式能不能用。
+
+变形；trasform
+平移；translate
+缩放；scale
+旋转；rotate
+扭曲；skew
+
+
+
+js事件；
+navigator ： 导航
+direction：方向
+row；行
+column；列
+reverse；反向。翻转
+space；空格
+round；环绕
+agent；代理
+user；用户
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.buju{
+				width: 1000px;
+				border: 1px solid black;
+				overflow: hidden;
+				margin: auto;
+			}
+			.one,.two,.three,.four,.five{
+				width: 200px;
+				box-sizing: border-box;
+				float: left;
+				/* border: 1px solid #00FFFF; */
+			}
+			.xiaokuai{
+				width: 180px;
+				border: 1px solid black;
+				margin: 10px auto;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="buju">
+			<div class="one"></div>
+			<div class="two"></div>
+			<div class="three"></div>
+			<div class="four"></div>
+			<div class="five"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var lie = document.querySelectorAll(".buju>div")
+		var buju = document.querySelector(".buju")
+
+		function get_min_height() {
+			var index = 0
+			var gaodu = lie[0].offsetHeight
+			for (var i = 0; i < lie.length; i++) {
+				if (lie[i].offsetHeight < gaodu) {
+					gaodu = lie[i].offsetHeight
+					index = i
+				}
+			}
+			return index
+		}
+
+		function my_random(max, min) {
+			return parseInt(Math.random() * (max - min + 1)) + min
+		}
+		for (var i = 0; i < 100; i++) {
+			var kuai = document.createElement('img')
+			kuai.className = "xiaokuai"
+			kuai.innerText = i
+			kuai.src = "jk/" + my_random(1, 7) + ".jpg"
+			kuai.style.height = my_random(80, 280) + "px"
+			var min_index = get_min_height()
+			var min_lie = lie[min_index]
+			min_lie.appendChild(kuai)
+
+		}
+	</script>
+</html>

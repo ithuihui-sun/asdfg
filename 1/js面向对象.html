@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // js： 确实是一个面向对象的语言， 面向对象语法非常不正规（ 正统）
+    // 面向对象和面向过程
+    // 对象： 属性和方法的集合
+    // 属性： 其实就是变量（ 只不过有个归属）
+    // 方法： 其实就是函数（ 只不过有个归属）
+    // 类： 一组同样属性和方法的对象的集合
+
+
+    //
+    //        js 里面的数据类型
+    //         Number 5 , 5.6 , 3.600
+    //         String "jalksdf" 'jalsdf'
+    //         Boll true  false
+    //         null 值 == 空  类型 = null
+    //         undefined 值 == 空  类型 = 未定义
+    //             null == undefined -> true
+    // //            === 绝对等于 不仅判断值 还要判断类型
+    //             null === undefined  -> false
+    Object.tostring() 对象类型
+        //            Array
+        //            {}
+        //            function
+        //
+        //        var a = [4 , 5 , 6];
+        //        a.toString();
+        //
+        //        var b = new Number(8);
+        //        b.toString();
+        //
+        //        var c = 2;
+        //        c.toString();
+        //
+        //        对象的原型链
+        //
+        //        function xxx () {
+        //            var a = 5;
+        //            var b = 6;
+        //        }
+        //        var yyy = new xxx();
+        //
+        //        js 里面所有的数据类型都是对象
+        //        var a = 5;
+        //        var b = new Number(5);
+        //        a.tostring()
+        //        a 是一个对象
+        //        a 对象里面有两个属性 'x' 和 'y'
+        //        每一个属性都有值 1 和 2
+        //        {属性名:值 , 属性名:值}
+        //
+        //        属性名 与 值 中间用:隔开
+        //        不同的属性之间用,隔开
+        //
+        //        一般用字符串来做属性名
+        //        也可以不用字符串
+        //        会默认帮你转变成字符串
+        //        而值可以是任意的形式
+        //        var a = {
+        //            'x':1 ,
+        //            'y':2 ,
+        //            z:6
+        //        };
+        //
+        //        console.log(a);
+        //
+        //        a.z = 3;
+        //        console.log(a);
+        //
+        ////        a["z" , "y" , "x"] = 4;
+        //        a["z" , "y"] = 4;
+        //        console.log(a);
+        //
+        //        对象属性的访问和设置
+        //        可以用点语法来访问和设置对象的属性值
+        //        Eg: a.x  a.x = 6;
+        //        可以用数组+,运算符的方式
+        //        Eg: a["y" , "x"]    a["y" , "x"] = 6;
+        //        Eg: a["x"]          a["x"] = 6;
+        //
+        //        ,运算符
+        //        通过,把不同的表达式分开
+        //        取值的时候 取最后一个表达式
+        //
+        //        表达式: 常量 变量 + 运算符(可有可无)
+        //        常量: 在整个程序运行期间永远不会发生改变的东西
+        //        变量: 通过数据类型在内存里面申请到的一块空间
+        //        下面的东西都是表达式
+        //        5
+        //        a = 5
+        //        a
+        //        a + 5
+        //        a + b
+        //        只要不是语句就是表达式
+        //        只要没有分号就是表达式
+        //        var a = 5;
+        //        var b = "jklj";
+        //
+        //
+        //        a.xxx = 3;
+        //        给a对象增加一个新的属性xxx
+        //        并且这个属性的value = 3;
+        //
+        //        a.xxx = 6;
+        //        先查看a对象中有没有xxx属性
+        //        如果有 直接赋值6
+        //        如果没有 新增加属性xxx 并且赋值6
+        //        var a = {};
+        //        a[] = 5;
+        ////        console.log(a);
+        //        对象内部可以用字符串做属性名
+        //        也可以用数组做属性名
+        //        也可以用另外一个对象做属性名
+        //        [3 , 2] -> 3,2
+        //        [1 , 2 , 6] -> 1,2,6
+        //        {} -> [Objec Objec]
+        //        {b:2} -> [Objec Objec]
+        //        {b:2 , c:3} -> [Object Object]
+        //        Object
+        //            Array
+        //            {}
+        //            function
+        //        定义了一个名字为 xxx 的函数
+        //        函数本省就是一个对象
+        // function xxx () {};
+        // xxx.prototype.b = 6;
+        // var yyy = new xxx();
+        // yyy.a = 5;
+        // yyy.b = 7;
+        // yyy.b = 9;
+        // console.log(yyy.b);
+        //
+        //        原型链 属性的继承
+        //        如果自己有 用自己的
+        //        如果自己没有   用自己的原型的(也就是自己的爹的)
+        //
+        //        修改
+        //        如果自己有  改自己的
+        //        如果自己没有  给自己增加
+        //        总之一句话
+        //        只能用爹的 不能动爹的
+        //        也就是爹的东西只能看 不能改
+        //        对象的层次结构
+        //        对象套对象
+        // var a = {
+        //     x:1 ,
+        //     y:2 ,
+        //     b:{c:3 , d:4},
+        //     z:5
+        // };
+        // b.hasOwnProperty("c")
+        //
+        // a.b.c == 3
+        //        console.log(a.b.c);
+        ////        a.hasOwnProperty("c")
+        ////        查看自己是否拥有属性x
+        //        console.log(a.hasOwnProperty("c"));
+        //        a 里面有个 x = 5;
+        //        function a () {};
+        //        a.prototype.x = 5;
+        //
+        ////        b 里面有个 y = 6;
+        ////        并且b里面还有一个 x = 5 的灵魂
+        //        var b = new a();
+        //        b.y = 6;
+        //
+        ////        console.log("y" in b);
+        ////        console.log(b.hasOwnProperty("y"));
+        //
+        ////      b 里面有一个x
+        ////      但是这个 x 不是自己的
+        //        b.x = 9;
+        ////        b.x = 10;
+        //
+        ////        console.log("x" in b);
+        ////        console.log(b.hasOwnProperty("x"));
+        //        console.log(b);
+        //        console.log(delete b.x);
+        //        console.log(b);
+        //        delete b.x
+        //        删除 b 对象的属性 x
+        //        如果 属性x 是可操作的 delete 返回true
+        //        如果 属性x 是不可操作的 delete 返回 false
+        //
+        //        从父亲继承过来的东西
+        //        孩子是不能删除的
+        //        console.log(delete b.x);
+        //        console.log(b);
+        //
+        //        var a = {x:1 , y:2};
+        //        可读: console.log(a.x);
+        //        可写: a.x = 6;
+        //        一般的属性 默认是可读可写
+        //        一般的属性 默认是可操作的
+        //        delete 是管用的 -> true
+        //        如果一个属性 被修饰成不可操作的
+        //        delete 不管用了 -> false
+        //
+        //        对象属性权限的问题
+        //        var die = {name:213 , minThree:"dandan"};
+        ////        下面的方法 返回的是有关"minThree"属性的一些介绍
+        ////        并且这些介绍是被包装到一个对象中返回出来的
+        //        var propertyDescription = Object.getOwnPropertyDescriptor(die , "minThree");
+        //        console.log(propertyDescription.configurable);
+        //
+        //
+        //
+        //
+        //
+        ////        var j = obj.xxx(4 , 5);
+        //
+        ////        console.log(delete die.minThree);
+        ////        console.log(delete die.minThree);
+        ////        console.log(die.minThree);
+        //
+        //        属性的权限
+        //        value writealbel enmualble configable
+        //        属性的遍历
+        //        for 添加给对象的属性
+        //        var a = {x0:1 , x1:2 , x2:3};
+        //        console.log(a["x0"]);
+        //
+        //        // 普通的for循环
+        //        // 通过变量因子 i 来遍历对象中的每一个属性
+        //        // 其中这些属性必须是有规律的
+        //        for (var i = 0; i < 3; i++) {
+        //            console.log(a["x" + i]);
+        //        }
+        //        var person1 = {name:"dandan" , age:81 , gender:"熊" , number:38};
+        //
+        ////        对象里面的属性是无序的
+        //
+        //        // for ..x.. in ..person1..
+        //        // person1 属性的枚举
+        //        var x = null;
+        //        for (x in person1) {
+        //            console.log(x);
+        //        }
+        //        console.log(a.x1);
+        //        var a = {x:1 , y:2};
+        ////        通过最原始的对象Object 给另外一个对象定义属性
+    value writeabel enumerable configable
+    Object.defineProperty(a, "z", {
+        value: 7
+    });
+    ////        a.z = 7;
+    ////        console.log(a.z);
+    //        console.log(Object.getOwnPropertyDescriptor(a , "z"));
+    ////        a.z = 8;
+    ////        console.log(a.z);
+    //
+    ////        console.log(a.propertyIsEnumerable("z"));
+    //
+    //        console.log(delete a.z);
+    //        console.log(delete a.z);
+    //        console.log(delete a.z);
+    //        a.z = 7;
+    //        给 a 对象增加一个新的属性 z
+    //        默认 value = 7 其他属性权限都为true
+    //
+    //        Object.defineProperty(a , "z" {value:7});
+    //        给 a 对象增加一个新的属性 z
+    //        value = 7  其他属性的权限都为false
+    //
+    //        属性的权限包括下面的几个东西:
+    //        {value: 7, writable: false, enumerable: false, configurable: false}
+    //        writable:用来控制属性能不能被修改
+    //        enumerable:用来控制属性能不能被列举出来
+    //        configurable:用来控制属性能不能被操作 比如删除属性
+    //        enumerable: 不仅能枚举出来自己的属性
+    //                    还可以枚举出来爹的属性
+    //var a = {};
+    //Object.defineProperty(a, "x", {
+    //    value: 1,
+    //    enumerable: false
+    //});
+    //Object.defineProperty(a, "y", {
+    //    value: 2,
+    //    enumerable: true
+    //});
+    //        console.log("toString" in a);
+    //        var result = a.propertyIsEnumerable("toString");
+    //        console.log(result);
+    //        var propertyName = null;
+    //        for(propertyName in a) {
+    //            console.log(propertyName);
+    //        }
+    //        通过 Object 的 create 方法
+    //        从 a 对象里面创建一个新的对象 b
+    //        所以说 b 的 原型是 a
+    //var b = Object.create(a);
+    //b.i = 3;
+    //b.j = 4;
+    ////
+    ////        console.log(a);
+    ////        console.log(b);
+    ////
+    //////        y in b == true
+    ////        b.hasOwnProperty("y") == false
+    //var propertyNameForB = null;
+    //for (propertyNameForB in b) {
+    //    if (b.hasOwnProperty(propertyNameForB)) {
+    //        console.log(propertyNameForB);
+    //    }
+    //}
+    //
+    //        console.log("x" in b);
+    //属性的另外一种读写方式
+    //setter 和 getter
+    //也叫set 和 get 方式
+    //var dandan = {
+    //    $age:null,
+    //    name: "dandan",
+    //    gender: "男?",
+    //    get age() {
+    //        return this.$age;
+    //    } ,
+    //    set age(a){
+    //        this.$age = a;
+    //    }
+    //};
+    //console.log(dandan.age);
+    ////    dandan.age = 13;
+    //dandan.age = 18;
+    //console.log(dandan.age);
+    //
+    //只要.语法出现在 = 左边
+    //就是在走属性的setter方法
+
+
+    ////$ 修饰该属性对外不公开
+    //var a = {
+    //    eWai:5 ,
+    //    y:2,
+    //    get x() {
+    //        return this.eWai;
+    //    },
+    //    set x(a) {
+    //        this.eWai = a;
+    //    }
+    //};
+    //console.log(a.x);
+    //a.x = 8;
+    //console.log(a.x);
+    //console.log(a.eWai);
+
+
+    //var a = 6;
+    //
+    //var b = {juduizhi:function xxx (a) {
+    //    if (a > 0) {
+    //    return a;
+    //}
+    //if (a <= 0) {
+    //    return -a;
+    //}
+    //} ,
+    //type:"erjinzhi"
+    //};
+
+    //属性的高级定义用法
+    //var a = {};
+    //Object.defineProperties(a , {
+    //    name:{value:"dandan"},
+    //    age:{value:17},
+    //    gender:{value:"女"}
+    //});
+    //console.log(a);
+
+    //创建2个电脑 要求这个电脑有键盘 鼠标 显示器
+    //另外要求 电脑有品牌
+    //        鼠标有品牌
+    //        键盘有品牌
+    //        显示器有品牌
+
+
+
+    //var coumputer1 = {
+    //    mouse:"双飞燕",
+    //    keyboard:"雷蛇",
+    //    monitor:"三星"
+    //};
+    //var coumputer2 = {
+    //    mouse:"雷蛇",
+    //    keyboard:"双飞燕",
+    //    monitor:"飞利浦"
+    //};
+    //
+    //
+    //console.log(coumputer1.mouse);
+
+    //序列化
+    //json 字符串
+    //JSON 是一种承载数据的格式
+    //xml
+
+    //var obj = {name:"因为爱情" , author:"王菲" , zhuanJi:"七里香"};
+    ////对象 -> String
+    //var str = JSON.stringify(obj);
+    //console.log(str);
+
+    //字符串 -> 对象
+    //var str = '{"name":"因为爱情" , "author":"王菲"}';
+    //var duixiang = JSON.parse(str);
+    //console.log(duixiang.name);
+
+
+    //var wrap = document.getElementById("wrap");
+    //var str = '{"url”:"图片地址"}';
+    //var obj = JSON.parse(str);
+    //var img = document.createElement("img");
+    //img.src = obj.photo;
+    //wrap.appendChild(img);
+
+
+    //        var a = xxx(5 , 6);
+    //        console.log(a);
+    //   
+    ////        函数的声明(定义)
+    ////        声明的前置
+    //        function xxx(a , b) {
+    //            return a + b;
+    //        }
+
+    //        函数的调用
+
+    //        function xxx (a , b) {
+    //            return a + b;
+    //        }
+
+
+
+
+
+
+    //        var xxx = function (a , b) {
+    //            return a + b;
+    //        }
+    //       
+    //        console.log(xxx(5 , 6));
+
+
+    //        调用
+
+    //        this
+    //        function xxx(a , b){
+    ////            console.log(this);
+    //            return a + b;
+    //        }
+    //       
+    //        xxx(5 , 6);
+    //       
+    //        console.log(this.document === document);
+
+
+
+    //        对象内的方法内的this
+    //        var o = {
+    //            x:1 ,
+    //            y:2 ,
+    //            f:function () {
+    //                return this.x + this.y;
+    //            }
+    //        };
+    //       
+    //        console.log(o.f());
+
+
+    //        var o = {x:1 , y:2};
+    //       
+    //        function xxx (){
+    //            return 6;
+    //        }
+    //       
+    //        o.f = xxx;
+    //        o.f = xxx();
+    ////       
+    //        console.log(o.f());
+
+    //        console.log(function xxx() {
+    //            return 6;
+    //        });
+
+
+    //        var a = 12 , b = 14;
+    //       
+    //       
+    //        function xxx(a , b) {
+    //            console.log(this.a);
+    //            return this.a + b;
+    //        }
+    //       
+    //        var result = xxx(5 , 6);
+    //       
+    //        console.log(result);
+
+
+    //        var o = {
+    //            a:1 ,
+    //            b:2 ,
+    //            f:function(a , b){
+    //                return this.a + this.b;
+    //            }
+    //        };
+    //       
+    //        console.log(o.f(5 , 6));
+
+
+    //        var o = {
+    //            f:function (a , b) {
+    //                return this.a + this.b;
+    //            }
+    //        };
+    //       
+    //        var oo = Object.create(o);
+    //        oo.a = 5;
+    //        oo.b = 6;
+    //        console.log(o.f(1 , 2));
+</script>
+
+</html>

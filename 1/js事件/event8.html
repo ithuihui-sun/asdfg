@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.jiemian {
+				width: 450px;
+				margin: 0 auto;
+				overflow: hidden;
+				text-align: center;
+			}
+
+			.jiemian>div {
+				width: 150px;
+				box-sizing: border-box;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			.xiao {
+				width: 150px;
+				margin: 10px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="jiemian">
+			<div class="one"></div>
+			<div class="two"></div>
+			<div class="three"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var my_jiemian = document.querySelector(".jiemian")
+		var all_lie
+
+		function random(m, n) {
+			return parseInt(Math.random() * (n - m + 1)) + m
+		}
+
+		function creat_col() {
+			var in_w = window.innerWidth
+			my_jiemian.style.width = in_w + "px"
+			var col_num = parseInt(in_w / 150)
+			my_jiemian.innerHTML = ""
+			for (var i = 0; i < col_num; i++) {
+				var col_div = document.createElement("div")
+				col_div.className = "col"
+				my_jiemian.appendChild(col_div)
+			}
+			all_lie = document.querySelectorAll(".jiemian>div")
+			creat_kuai()
+		}
+		creat_col()
+		window.addEventListener("resize", function() {
+			creat_col()
+		})
+
+		function get_min_height_index() {
+			var xiabiao = 0
+			var h = all_lie[0].offsetHeight
+			for (var j = 0; j < all_lie.length; j++) {
+				if (all_lie[j].offsetHeight < h) {
+					h = all_lie[j].offsetHeight
+					xiabiao = j
+				}
+			}
+			return xiabiao
+		}
+
+		function creat_kuai() {
+			for (var i = 0; i < 100; i++) {
+				var xiao_d = document.createElement("img")
+				xiao_d.className = "xiao"
+				xiao_d.src = "jk/" + random(1, 7) + ".jpg"
+				xiao_d.style.height = random(80, 200) + "px"
+				var min_index = get_min_height_index()
+				var min_lie = all_lie[min_index]
+				min_lie.appendChild(xiao_d)
+			}
+		}
+	</script>
+</html>

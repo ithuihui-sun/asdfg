@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				text-align: center;
+			}
+
+			#my_canvas {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="my_canvas"></canvas><br /> 颜色:
+		<select id="select">
+			<option value="black">黑</option>
+			<option value="red">红</option>
+			<option value="blue">蓝</option>
+			<option value="yellow">黄</option>
+			<option value="greenyellow">绿</option>
+		</select>
+		粗细:
+		<input class="ipt" type="range" value="10" min="1" max="500" />
+		<button class="qingchu">清空</button>
+		<button onclick="back_fn()">撤销</button>
+		<button onclick="forword_fn()">反撤销</button>
+
+
+
+		<input type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()" />
+		<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+		<!-- <canvas id="canvas" width="500px" height="500px"></canvas> -->
+		<button id="snap" onclick="takePhoto()">拍照</button>
+
+
+
+	</body>
+	<script type="text/javascript">
+		var my_canvas = document.getElementById("my_canvas")
+		var my_context = my_canvas.getContext("2d")
+		var ipt = document.querySelector(".ipt")
+		var qingchu = document.querySelector(".qingchu")
+		var kaishi_x = 0
+		var kaishi_y = 0
+		var is_down = false
+		var my_color = "black"
+		var my_linewidth = ipt.value
+		var step = 0
+		var canvas_big_arr = ["空"]
+		var my_pingmubl = 0.9
+		my_canvas.width = window.innerWidth * my_pingmubl
+		my_canvas.height = window.innerHeight * my_pingmubl
+		var my_ww = my_canvas.width
+		var my_hh = my_canvas.height
+		ipt.addEventListener("change", function() {
+			my_linewidth = this.value
+		})
+		select.addEventListener("change", function() {
+			my_color = this.value
+		})
+		window.addEventListener("resize", function() {
+			my_canvas.width = window.innerWidth * my_pingmubl
+			my_canvas.height = window.innerHeight * my_pingmubl
+		})
+		console.log(my_canvas.offsetLeft, my_canvas.offsetTop)
+
+		function draw_image_step() {
+			if (step <= 0) {
+				my_context.clearRect(0, 0, my_canvas.offsetWidth, my_canvas.offsetHeight)
+			} else {
+				var tmp_img = canvas_big_arr[step]
+				my_context.clearRect(0, 0, my_canvas.offsetWidth, my_canvas.offsetHeight)
+				var img_obj = new Image()
+				img_obj.src = tmp_img
+				img_obj.onload = function() {
+					my_context.beginPath()
+					my_context.drawImage(this, 0, 0)
+					my_context.closePath()
+				}
+			}
+
+		}
+
+		function back_fn() {
+			if (step <= 0) {
+				return
+			}
+			step--
+			draw_image_step()
+		}
+
+		function forword_fn() {
+			if (step >= canvas_big_arr.length - 1) {
+				return
+			}
+			step++
+			draw_image_step()
+		}
+		qingchu.addEventListener("click", function() {
+			my_context.clearRect(0, 0, my_canvas.offsetWidth, my_canvas.offsetHeight)
+			canvas_big_arr = ["空"]
+			step = 0
+		})
+
+		function draw_img(event) {
+			event.stopPropagation()
+			event.preventDefault()
+			var dangqian_x, dangqian_y
+			if (event.touches) {
+				dangqian_x = event.touches[0].clientX - my_canvas.offsetLeft
+				dangqian_y = event.touches[0].clientY - my_canvas.offsetTop
+			} else {
+				dangqian_x = event.clientX - my_canvas.offsetLeft
+				dangqian_y = event.clientY - my_canvas.offsetTop
+			}
+			if (is_down == true) {
+				my_context.beginPath()
+				my_context.moveTo(kaishi_x, kaishi_y)
+				my_context.lineTo(dangqian_x, dangqian_y)
+				my_context.lineWidth = my_linewidth
+				my_context.lineCap = "round"
+				my_context.strokeStyle = my_color
+				my_context.stroke()
+				my_context.closePath()
+				kaishi_x = dangqian_x
+				kaishi_y = dangqian_y
+			}
+		}
+
+		function end_fn() {
+			is_down = false
+			var my_imgs = my_canvas.toDataURL("image/png")
+			canvas_big_arr = canvas_big_arr.splice(0, step + 1)
+			canvas_big_arr.push(my_imgs)
+			step++
+		}
+		my_canvas.addEventListener("touchstart", function(event) {
+			var event = event || window.event
+			is_down = true
+			kaishi_x = event.clientX - my_canvas.offsetLeft
+			kaishi_y = event.clientY - my_canvas.offsetTop
+		})
+		my_canvas.addEventListener("mousedown", function(event) {
+			var event = event || window.event
+			is_down = true
+			kaishi_x = event.clientX - my_canvas.offsetLeft
+			kaishi_y = event.clientY - my_canvas.offsetTop
+		})
+		my_canvas.addEventListener("touchmove", function(event) {
+			var event = event || window.event
+			draw_img(event)
+		})
+		my_canvas.addEventListener("mousemove", function(event) {
+			var event = event || window.event
+			draw_img(event)
+		})
+		my_canvas.addEventListener("touchend", function() {
+			var event = event || window.event
+			end_fn()
+		})
+		my_canvas.addEventListener("mouseup", function() {
+			var event = event || window.event
+			end_fn()
+		})
+
+		// 拍照
+		function getMedia() {
+			let constraints = {
+				video: {
+					width: my_ww,
+					height: my_hh
+				},
+				audio: true
+			};
+			//获得video摄像头区域
+			let video = document.getElementById("video");
+			//这里介绍新的方法，返回一个 Promise对象
+			// 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+			// then()是Promise对象里的方法
+			// then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+			// 避免数据没有获取到
+			let promise = navigator.mediaDevices.getUserMedia(constraints);
+			promise.then(function(MediaStream) {
+				video.srcObject = MediaStream;
+				video.play();
+			});
+		}
+
+		function takePhoto() {
+			//获得Canvas对象
+			let video = document.getElementById("video");
+			// let canvas = document.getElementById("canvas");
+			// let ctx = canvas.getContext('2d');
+			my_context.drawImage(video, 0, 0, my_ww, my_hh);
+		}
+	</script>
+
+</html>

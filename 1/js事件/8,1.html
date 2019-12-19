@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.da {
+				width: 400px;
+				height: 400px;
+				border: 1px solid black;
+				margin: 0 auto;
+				background-color: #00FFFF;
+			}
+
+			.kuai {
+				width: 100px;
+				height: 100px;
+				background-color: white;
+				border: 1px solid black;
+				float: left;
+				border-radius: 10px;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 100px;
+			}
+			/* @keyframes name{
+				from{}
+				to{}
+			}
+			
+			.ani_shang{
+				animation: shang_kai 1s ease 0s 1;
+			}
+			.ani_xia{
+				animation: xia_kai 1s ease 0s 1;
+			}
+			.ani_zuo{
+				animation: zuo_kai 1s ease 0s 1;
+			}
+			.ani_you{
+				animation: you_kai 1s ease 0s 1;
+			} */
+		</style>
+	</head>
+	<body>
+		<div class="da"></div>
+	</body>
+	<script>
+		var da_div = document.querySelector(".da")
+		var p1_x, p1_y
+		for (var i = 0; i < 16; i++) {
+			var tmp_div = document.createElement("div")
+			tmp_div.className = "kuai"
+			da_div.appendChild(tmp_div)
+
+
+			tmp_div.onmousemove = function() {
+				this.style.background = ""
+				this.innerText = "你是sb"
+			}
+			tmp_div.onmouseleave = function() {
+				this.style.background = "pink"
+				this.innerText = ""
+			}
+
+			tmp_div.addEventListener("mouseenter", function() {
+				
+				// var l = this.getBoundingClientRect().left
+				// var t = this.getBoundingClientRect().top
+				
+				
+				var shang = this.offsetTop
+				var xia = this.offsetTop + this.offsetHeight
+				var zuo = this.offsetLeft
+				var you = this.offsetLeft + this.offsetWidth
+
+				var juli_z = p1_x - zuo
+				var juli_y = you - p1_x
+				var juli_s = p1_y - shang
+				var juli_x = xia - p1_y
+
+				var a = [juli_s, juli_x, juli_z, juli_y]
+				var xiao = a[0]
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] < xiao) {
+						xiao = a[i]
+					}
+				}
+				switch (xiao) {
+					case juli_s:
+						// this.style.borderTop = "3px solid red"
+						this.className = "kuai ani_shang"
+						break;
+					case juli_x:
+						// this.style.borderBottom = "3px solid red"
+						this.className = "kuai ani_xia"
+						break;
+					case juli_z:
+						// this.style.borderLeft = "3px solid red"
+						this.className = "kuai ani_zuo"
+						break;
+					case juli_y:
+						// this.style.borderRight = "3px solid red"
+						this.className = "kuai ani_you"
+						break;
+					default:
+						break;
+				}
+			})
+			tmp_div.addEventListener("mouseleave", function(event) {
+				this.style.border = "1px solid black";
+			})
+		}
+
+		window.addEventListener("mousemove", function(event) {
+			var event = event || window.event
+			p1_x = event.layerX
+			p1_y = event.layerY
+		})
+	</script>
+</html>
